@@ -7,18 +7,19 @@ function userCard(number) {
         key:'',
         balance: 100,
         transactionLimit: 100,
-        historyLogs: ``
+        historyLogs: []
     }
 
-    // if (putCredits()) {
-    //     historyLogs.operationType == 'receivedCredits'
+    // function onchange(a,b,c) {
+    //     if (receivedCredits) {
+    //         historyLogs.operationType == 'receivedCredits'
+    //     } else if (widhdrawalOfCredits) {
+    //         historyLogs.operationType == 'takeCredits'
+    //     } else if (transactionLimit) {
+    //         historyLogs.operationType == 'setTransactionLimit'
+    //     }
     // }
-    // else if  (takeCredits()) {
-    //     historyLogs.operationType == 'takeCredits'
-    // }
-    // else if (setTransactionLimit()) {
-    //     historyLogs.operationType == 'setTransactionLimit'
-    // }
+    // function onchange(receivedCredits,widhdrawalOfCredits,transactionLimit)
 
     return {
         getCardOptions: function () {
@@ -104,17 +105,3 @@ card3.transferCredits(50, userCard());
 // card2.takeCredits(50);
 // console.log(card1.getCardOptions());
 
-// function userCard(number) {
-//
-//     const date = new Date()
-//
-//     return {
-//         getCardOptions: function () {
-//             let CardOptions = `key:${number}, balance: 100, transactionLimit: 100, historyLogs: [operationType: '', credits: '',operationTime: ${date}], `
-//             return CardOptions
-//         }
-//     }
-// }
-//
-// const card3 = userCard(3);
-// console.log(card3.getCardOptions())
