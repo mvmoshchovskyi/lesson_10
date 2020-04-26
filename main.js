@@ -1,80 +1,69 @@
 function userCard(number) {
 
-    const date = new Date()
-    const actionTypes = ["Put credits", "Take credits", "Set transaction Limit"];
+    let date
+
     const card = {
         key: number,
         balance: 100,
         transactionLimit: 100,
         historyLogs: []
     }
-
     return {
         getCardOptions: function () {
             return card
-
         },
         putCredits: function (money) {
             card.historyLogs.push({
-                'operationType': actionTypes[0],
+                'operationType': "Received credits",
                 'credits': money,
-                'operationTime': date.toLocaleString()
+                'operationTime': new Date().toLocaleString()
             });
-
             return card.balance += money
         },
         takeCredits: function (money) {
             if (money >= card.balance || card.transactionLimit == 0) {
-                console.error('недостатньо коштів')
+                console.error('недостатньо коштів або перевищено ліміт')
             } else {
                 card.historyLogs.push({
-                    'operationType': actionTypes[1],
+                    'operationType': 'Withdrawall of credits',
                     'credits': money,
-                    'operationTime': date.toLocaleString()
+                    'operationTime': new Date().toLocaleString()
                 });
                 return card.balance -= money
             }
         },
         setTransactionLimit: function (nLimit) {
             card.historyLogs.push({
-                'operationType': actionTypes[2],
+                'operationType': 'Transaction limit change',
                 'credits': nLimit,
-                'operationTime': date.toLocaleString()
+                'operationTime': new Date().toLocaleString()
             });
             return card.transactionLimit = nLimit
         },
         transferCredits: function (credit, otherCard) {
 
-            if (credit > card.balance && card.transactionLimit == 0) {
-                console.error('недостатньо коштів')
+            if (credit > card.balance || card.transactionLimit == 0) {
+                console.error('недостатньо коштів або перевищено ліміт ')
             } else {
                 let newCredit = (credit - (credit * 0.005))
-
                 this.takeCredits(credit)
-
                 otherCard.putCredits(newCredit)
                 return credit
-
             }
         },
-
     }
 }
 
-const card3 = userCard(3);
-const card4 = userCard(4);
-const card5 = userCard(5)
-
-
-// console.log(card3.getCardOptions());
-// card3.putCredits(120);
-// card3.takeCredits(80);
-// card3.setTransactionLimit(10);
-card3.transferCredits(10, card4);
+const card3 = userCard(3); // число не більше 3
+const card1 = userCard(1)
+console.log(card3.getCardOptions());
+card3.putCredits(120);
+card3.takeCredits(80);
+card3.setTransactionLimit(1000);
+card3.transferCredits(100, card1);
 
 
 // завдання 2
-
 
 class UserAccount {
     constructor(name) {
@@ -163,13 +152,12 @@ class UserAccount {
 
 //
 let user = new UserAccount('Bob');
-// // user.addCard()
-// // user.addCard()
+// user.addCard()
+// user.addCard()
 // let card1 = user.getCardByKey(1);
-// // let card2 = user.getCardByKey(2);
-// card1.putCredits(500);
-// // card1.setTransactionLimit(800);
-// // card1.transferCredits(300, card2);
-// // card2.takeCredits(50);
-// // console.log(card1.getCardOptions());
-
+// let card2 = user.getCardByKey(2);
+// // card1.putCredits(500);
+// // // card1.setTransactionLimit(800);
+// // // card1.transferCredits(300, card2);
+// // // card2.takeCredits(50);
+// // // console.log(card1.getCardOptions());
