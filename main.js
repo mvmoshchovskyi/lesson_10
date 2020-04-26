@@ -2,29 +2,37 @@ function userCard(number) {
 
     const date = new Date()
 
-    const card = {
-        key: 2,
+
+    let card = {
+        key:'',
         balance: 100,
         transactionLimit: 100,
-        historyLogs: [
-            {operationType: '', credits: '', operationTime: `${date}`},
-        ],
+        historyLogs: ``
     }
+
+    // if (putCredits()) {
+    //     historyLogs.operationType == 'receivedCredits'
+    // }
+    // else if  (takeCredits()) {
+    //     historyLogs.operationType == 'takeCredits'
+    // }
+    // else if (setTransactionLimit()) {
+    //     historyLogs.operationType == 'setTransactionLimit'
+    // }
+
     return {
         getCardOptions: function () {
-            // let CardOptions = (        {key:2, balance: 100, transactionLimit: 100})
-            // return cardOptions
-            // {operationType:`${receivedCredits}`,credits: `${newCredit}` , operationTime: `${date}`}
+            return CardOptions = `key:${number}, balance: 100, transactionLimit: 100, historyLogs: [operationType: , credits: ,operationTime: ${date}],`
         },
         putCredits: function (money) {
-            let receivedCredits = (card.balance + money)
+             receivedCredits = card.balance += money
             return receivedCredits
         },
         takeCredits: function (money) {
-            if (money > card.balance && transactionLimit > 0) {
+            if (money > card.balance || card.transactionLimit == 0) {
                 console.error('недостатньо коштів')
             } else {
-                let widhdrawalOfCredits = (card.balance - money)
+                widhdrawalOfCredits =card.balance -= money
                 return widhdrawalOfCredits
             }
         },
@@ -33,18 +41,19 @@ function userCard(number) {
         },
         transferCredits: function (credit, card1) {
 
-            if (credit > card.balance && transactionLimit > 0) {
+            if (credit > card.balance && card.transactionLimit == 0) {
                 console.error('недостатньо коштів')
             } else {
                 let newCredit = (credit - (credit * 0.005))
                 return newCredit
             }
-        },
+        }
     }
 }
 
 const card3 = userCard(3);
-card3.getCardOptions();
+
+console.log(card3.getCardOptions());
 card3.putCredits(120);
 card3.takeCredits(80);
 card3.setTransactionLimit(10);
@@ -56,33 +65,33 @@ card3.transferCredits(50, userCard());
 
 // завдання 2
 
-
-class UserAccount {
-    constructor(options) {
-        this.name = options.name
-        this.cards = options.cards
-    }
-
-    addCard() {
-        userCard()
-        card <= 3
-    }
-
-    getCardByKey() {
-return {
-key: 1,
-balance: 150,
-    transactionLimit: 100,
-historyLogs:[{}]
-}
-    }
-}
-
-const user = new UserAccount({
-    name: 'Bob',
-    cards: 3,
-    addCard: true
-});
+//
+// class UserAccount {
+//     constructor(options) {
+//         this.name = options.name
+//         this.cards = options.cards
+//     }
+//
+//     addCard() {
+//         userCard()
+//         card <= 3
+//     }
+//
+//     getCardByKey() {
+// return {
+// key: 1,
+// balance: 150,
+//     transactionLimit: 100,
+// historyLogs:[{}]
+// }
+//     }
+// }
+//
+// const user = new UserAccount({
+//     name: 'Bob',
+//     cards: 3,
+//     addCard: true
+// });
 
 // let user = new UserAccount('Bob');
 // user.addCard()
@@ -94,3 +103,18 @@ const user = new UserAccount({
 // card1.transferCredits(300, card2);
 // card2.takeCredits(50);
 // console.log(card1.getCardOptions());
+
+// function userCard(number) {
+//
+//     const date = new Date()
+//
+//     return {
+//         getCardOptions: function () {
+//             let CardOptions = `key:${number}, balance: 100, transactionLimit: 100, historyLogs: [operationType: '', credits: '',operationTime: ${date}], `
+//             return CardOptions
+//         }
+//     }
+// }
+//
+// const card3 = userCard(3);
+// console.log(card3.getCardOptions())
